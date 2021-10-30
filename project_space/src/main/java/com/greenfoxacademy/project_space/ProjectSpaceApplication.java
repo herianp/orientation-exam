@@ -25,12 +25,12 @@ public class ProjectSpaceApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
 //        Ship ship = new Ship();
 //        ship.setDocked(true);
-//        ship.setMaxSpeed(5.5F);
-//        ship.setName("Enterprise");
+//        ship.setMaxSpeed(9F);
+//        ship.setName("Rocket");
 //
 //        Planet planet = new Planet();
 //        planet.setName("Mars");
-//        planet.setDocking_capacity(2);
+//        planet.setDocking_capacity(1);
 //        planet.addShip(ship);
 //
 //        planetRepository.save(planet);

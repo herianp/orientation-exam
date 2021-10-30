@@ -30,7 +30,7 @@
 <h2>Send ship</h2>
 <p>Ships can only be sent if they are undocked. If you aren't seeing your ship in the
     select below, make sure to undock it above.</p>
-<form th:action="'/sentShip'">
+<form th:action="'/ship/move'">
     <label for="ship">Which ship should be sent...</label>
     <select name="ship_name" id="ship">
         <th:block th:each="ship : ${shipList}" th:object="${ship}">
@@ -48,15 +48,15 @@
 </form>
 <p th:if="${errorMessage}" th:style="'color: red;'" th:text="${errorMessage}">Error</p>
 
-<form th:action="'#'">
+<form th:action="'/ships'" method="post">
     <label for="c_ship_name">Ship name</label>
-    <input type="text" id="c_ship_name" name="new_ship_name">
+    <input type="text" id="c_ship_name" name="name">
 
-    <label for="c_ship_speed">Ship name</label>
-    <input type="text" id="c_ship_speed" name="new_ship_speed">
+    <label for="c_ship_speed">Speed</label>
+    <input type="number" step="any" id="c_ship_speed" name="maxSpeed">
 
-    <label for="c_ship_planet">Ship name</label>
-    <select name="new_ship_planet" id="c_ship_planet">
+    <label for="c_ship_planet">Planet</label>
+    <select name="planet" id="c_ship_planet">
         <th:block th:each="planet : ${planetList}" th:object="${planet}">
             <option th:text="*{name}" th:value="*{name}">planet</option>
         </th:block>

@@ -20,8 +20,8 @@ public class Ship {
 
     private String name;
 
-    private Float maxSpeed;
-    private boolean isDocked;
+    private Float maxSpeed = 1F;
+    private boolean isDocked = false;
 
     @ManyToOne
     @JoinColumn(name = "planet_id")
