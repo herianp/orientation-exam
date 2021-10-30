@@ -1,10 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" xmlns:th=http://www.thymeleaf.org>
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>index.html</title>
 </head>
 <body>
-$END$
+<h1>Spacesship Transport manager</h1>
+<h2>Ships</h2>
+<table>
+    <tr>
+        <th>#</th>
+        <th>Ship name</th>
+        <th>Maximum wrap speed</th>
+        <th>Current location</th>
+        <th>Docking action</th>
+    </tr>
+    <tr th:each="ship : ${shipList}" th:object="${ship}">
+        <td th:text="*{id}">#</td>
+        <td th:text="*{name}">#</td>
+        <td th:text="*{maxSpeed}">#</td>
+        <td th:text="*{planet}">#</td>
+        <td th:text="*{docked}">#</td>
+    </tr>
+</table>
+<h2>Send ship</h2>
+<p>Ships can only be sent if they are undocked. If you aren't seeing your ship in the
+    select below, make sure to undock it above.</p>
+<form th:action="'#'">
+    <label for="ship">Which ship should be sent...</label>
+    <select name="ship_name" id="ship">
+        <th:block th:each="ship : ${shipList}" th:object="${ship}">
+            <option th:text="*{name}" th:value="*{name}">planet</option>
+        </th:block>
+    </select>
+
+    <label for="planet">...to wich planet</label>
+    <select name="planet_name" id="planet">
+        <th:block th:each="planet : ${planetList}" th:object="${planet}">
+            <option th:text="*{name}" th:value="*{name}">planet</option>
+        </th:block>
+    </select>
+    <button type="submit">Send the ship!</button>
+</form>
+
+<form th:action="'#'">
+    <label for="c_ship_name">Ship name</label>
+    <input type="text" id="c_ship_name" name="new_ship_name">
+
+    <label for="c_ship_speed">Ship name</label>
+    <input type="text" id="c_ship_speed" name="new_ship_speed">
+
+    <label for="c_ship_planet">Ship name</label>
+    <select name="new_ship_planet" id="c_ship_planet">
+        <th:block th:each="planet : ${planetList}" th:object="${planet}">
+            <option th:text="*{name}" th:value="*{name}">planet</option>
+        </th:block>
+    </select>
+
+    <button type="submit">Create the ship!</button>
+</form>
+
+
 </body>
 </html>

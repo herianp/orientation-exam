@@ -28,4 +28,9 @@ public class Planet {
             mappedBy = "planet")
     private List<Ship> planetList = new ArrayList<>();
 
+    public void addShip(Ship ship){
+        planetList.add(ship);
+        ship.setPlanet(this);
+    }
+
 }
