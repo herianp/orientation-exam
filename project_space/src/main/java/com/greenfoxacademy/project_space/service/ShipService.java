@@ -7,6 +7,7 @@ import com.greenfoxacademy.project_space.entity.Ship;
 import com.greenfoxacademy.project_space.model.ShipDto;
 import com.greenfoxacademy.project_space.service.mapper.ShipMapper;
 import org.mapstruct.Mapper;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -62,5 +63,11 @@ public class ShipService {
         System.out.println(planet.get().getName());
         planet.get().addShip(ship);
         planetRepository.save(planet.get());
+    }
+
+    public List<ShipDto> warpAtLeast(Float warpAtLeast) {
+        return shipRepository.findByWarpAtLeast(warpAtLeast).stream()
+                .map(ship -> shipMapper.mapDto(ship))
+                .collect(Collectors.toList());
     }
 }

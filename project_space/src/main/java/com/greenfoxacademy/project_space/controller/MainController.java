@@ -58,11 +58,5 @@ public class MainController {
         return "redirect:/";
     }
 
-    @DeleteMapping("/planets/{id}")
-    public ResponseEntity deletePlanet(@PathVariable Long id){
-
-        planetService.delete(id);
-        return ResponseEntity.ok().build();
-    }
 
 }
