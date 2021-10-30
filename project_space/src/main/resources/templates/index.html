@@ -23,13 +23,14 @@
         <td th:text="*{name}">#</td>
         <td th:text="*{maxSpeed}">#</td>
         <td th:text="*{planet}">#</td>
-        <td th:text="*{docked}">#</td>
+        <td><a th:text="*{isDocked()} ? 'Docked' : 'Undocked'"
+               th:href="'/dock/' + *{id}"></a></td>
     </tr>
 </table>
 <h2>Send ship</h2>
 <p>Ships can only be sent if they are undocked. If you aren't seeing your ship in the
     select below, make sure to undock it above.</p>
-<form th:action="'#'">
+<form th:action="'/sentShip'">
     <label for="ship">Which ship should be sent...</label>
     <select name="ship_name" id="ship">
         <th:block th:each="ship : ${shipList}" th:object="${ship}">
@@ -45,6 +46,7 @@
     </select>
     <button type="submit">Send the ship!</button>
 </form>
+<p th:if="${errorMessage}" th:style="'color: red;'" th:text="${errorMessage}">Error</p>
 
 <form th:action="'#'">
     <label for="c_ship_name">Ship name</label>

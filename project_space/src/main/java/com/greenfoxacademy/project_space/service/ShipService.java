@@ -25,4 +25,20 @@ public class ShipService {
                 .map(ship -> shipMapper.mapDto(ship))
                 .collect(Collectors.toList());
     }
+
+    public void changeDock(Long id) {
+        Ship ship = shipRepository.findById(id).get();
+
+        if (ship.isDocked()){
+            ship.setDocked(false);
+        } else {
+            ship.setDocked(true);
+        }
+
+        shipRepository.save(ship);
+    }
+
+    public ShipDto findByName(String ship_name) {
+        return shipMapper.mapDto(shipRepository.findByName(ship_name).get());
+    }
 }
